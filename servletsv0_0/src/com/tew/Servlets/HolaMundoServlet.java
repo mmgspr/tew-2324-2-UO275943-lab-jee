@@ -26,23 +26,28 @@ public class HolaMundoServlet extends HttpServlet {
 		out.println("<HEAD><TITLE>Hola Mundo!</TITLE></HEAD>");
 		out.println("<BODY>");
 		@SuppressWarnings("unchecked")
-		Vector<String> listado =
-		(Vector<String>)request.getSession().getAttribute("listado");
+		Vector<String> listado = (Vector<String>)request.getSession().getAttribute("listado");
 		if (listado == null){
-		listado = new Vector<String>();
+			listado = new Vector<String>();   
 		}
 		if ( nombre != null ){
-		out.println("<br>Hola "+nombre+"<br>");
-		listado.addElement(nombre);
+			out.println("<br>Hola "+nombre+"<br>");
+			listado.addElement(nombre);
 		}
 		request.getSession().setAttribute("listado",listado);
 		out.println("Bienvenido a mi primera página web!");
 		out.println("<br>");
 		out.println("Contigo, hoy me han visitado:<br>");
 		for ( int i = 0 ; i < listado.size() ; i++ ){
-		out.println("<br>"+(String)listado.elementAt(i));
+			out.println("<br>"+(String)listado.elementAt(i));
 		}
 		out.println("<a href=\"index.html\">volver</a>");
+		Integer contador= (Integer) getServletContext().getAttribute("contador");
+		if ( contador == null ){
+			contador = new Integer(0);
+		}
+		getServletContext().setAttribute("contador",new Integer(contador.intValue()+1));
+		out.println("<br><br>" + contador +" visitas");
 		out.println("</BODY></HTML>");
 	}
 
