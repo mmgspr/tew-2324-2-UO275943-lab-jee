@@ -17,13 +17,17 @@ public class HolaMundoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String nombre = (String) request.getParameter("NombreUsuario");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<HTML>");
 		out.println("<HEAD><TITLE>Hola Mundo!</TITLE></HEAD>");
 		out.println("<BODY>");
-		out.println("Bienvenido a mi primera página web!");
+		if ( nombre != null ){
+		out.println("<br>Hola "+nombre+"<br>");
+		}
+		out.println("Bienvenido a mi primera página Web!");
 		out.println("</BODY></HTML>");
 	}
 
