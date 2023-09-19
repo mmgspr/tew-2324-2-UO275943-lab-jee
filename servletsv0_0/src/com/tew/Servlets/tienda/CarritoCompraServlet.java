@@ -39,7 +39,16 @@ public class CarritoCompraServlet extends HttpServlet {
 		}
 
 		request.getSession().setAttribute("carrito", carrito);
-		RequestDispatcher dispatcher = getServletContext().getNamedDispatcher("CarritoCompraVista");
+		
+		com.tew.beans.Counter contador=(com.tew.beans.Counter)getServletContext().getAttribute("counter");
+		if(contador == null) {
+			contador = new com.tew.beans.Counter();
+			
+		}
+		contador.getIncrementedValue();
+		getServletContext().setAttribute("counter", contador);
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 
 
