@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16953169895160" configfile="/gestioneitorv1_0/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16953169895160" configfile="/gestioneitorv1_0/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf16955738942830" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16955738942831 pf169557444652012" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" id="pf16955738942833" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16955738942831" path="/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf16955741297517" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf16955741297518" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf16955741297519" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16955741297518" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="altaForm.xhtml" id="pf169557444652013" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf169557444652012" path="/altaForm.xhtml"/>
+  <links id="pf16955738942831" target="pf16955738942833" source="pf16955738942830" outcome="exito" fromaction="#{controller.listado}"/>
+  <links id="pf16955741297518" target="pf16955741297519" source="pf16955741297517" outcome="error"/>
+  <links id="pf169557444652012" target="pf169557444652013" source="pf16955738942830" outcome="alta"/>
+</pageflow:Pageflow>
