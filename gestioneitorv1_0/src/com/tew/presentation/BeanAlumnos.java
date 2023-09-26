@@ -6,6 +6,7 @@ import javax.faces.event.ActionEvent;
 import com.tew.business.AlumnosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Alumno;
+import com.tew.model.ErrorDTO;
 
 public class BeanAlumnos implements Serializable{
 	private static final long serialVersionUID = 55555L;
@@ -14,6 +15,15 @@ public class BeanAlumnos implements Serializable{
 	// Es necesario inicializarlo para que al entrar desde el formulario de
 	// AltaForm.xhtml se puedan dejar los valores en un objeto existente.
 	private Alumno alumno = new Alumno();
+	private ErrorDTO error = new ErrorDTO();
+
+	public ErrorDTO getError() {
+		return error;
+	}
+
+	public void setError(ErrorDTO error) {
+		this.error = error;
+	}
 
 	private Alumno[] alumnos = null;
 
@@ -55,7 +65,10 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			e.printStackTrace();
+			error.setVista("Listado");
+			error.setClase(e.getStackTrace()[0].getClassName());
+			error.setMetodo(e.getStackTrace()[0].getMethodName());
+			error.setEx(e);
 			return "error";
 		}
 	}
@@ -70,7 +83,10 @@ public class BeanAlumnos implements Serializable{
 			alumno = service.findById(alumno.getId());
 			return "exito";
 		} catch (Exception e) {
-			e.printStackTrace();
+			error.setVista("editForm");
+			error.setClase(e.getStackTrace()[0].getClassName());
+			error.setMetodo(e.getStackTrace()[0].getMethodName());
+			error.setEx(e);
 			return "error";
 		}
 	}
@@ -92,7 +108,10 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			e.printStackTrace();
+			error.setVista("altaForm");
+			error.setClase(e.getStackTrace()[0].getClassName());
+			error.setMetodo(e.getStackTrace()[0].getMethodName());
+			error.setEx(e);
 			return "error";
 		}
 	}
@@ -109,7 +128,10 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			e.printStackTrace();
+			error.setVista("Listado");
+			error.setClase(e.getStackTrace()[0].getClassName());
+			error.setMetodo(e.getStackTrace()[0].getMethodName());
+			error.setEx(e);
 			return "error";
 		}
 	}
