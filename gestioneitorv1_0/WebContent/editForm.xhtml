@@ -4,20 +4,22 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Formulario Alta</title>
-</h:head>
-<h:body>
+<f:view locale="#{settings.locale}">
+	<h:head>
+		<title>Formulario Alta</title>
+	</h:head>
+	<h:body>
 
-	<h:form>
-		<p:panelGrid columns="2">
-			NOMBRE: <p:inputText value="#{controller.alumno.nombre}" />
-			APELLIDOS: <p:inputText value="#{controller.alumno.apellidos}" />
-			USERID: <p:inputText value="#{controller.alumno.iduser}" />
-			EMAIL: <p:inputText value="#{controller.alumno.email}" />
-		</p:panelGrid>
-		<h:commandButton value="Editar" action="#{controller.edit}" />
-	</h:form>
+		<h:form>
+			<p:panelGrid columns="2">
+			#{msgs.nombre}: <p:inputText value="#{controller.alumno.nombre}" />
+			#{msgs.apellidos}: <p:inputText value="#{controller.alumno.apellidos}" />
+			#{msgs.userid}: <p:inputText value="#{controller.alumno.iduser}" />
+			#{msgs.correo}: <p:inputText value="#{controller.alumno.email}" />
+			</p:panelGrid>
+			<h:commandButton value="Editar" action="#{controller.edit}" />
+		</h:form>
 
-</h:body>
+	</h:body>
+</f:view>
 </html>

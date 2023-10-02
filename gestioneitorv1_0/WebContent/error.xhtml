@@ -4,18 +4,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>Error</title>
-</h:head>
-<h:body>
-
-Se ha producido un error:<br/>
-	<p:panelGrid columns="2">
+<f:view locale="#{settings.locale}">
+	<h:head>
+		<title>Error</title>
+	</h:head>
+	<h:body>
+Se ha producido un error:<br />
+		<p:panelGrid columns="2">
 			VISTA: <p:outputText value="#{controller.error.vista}" />
 			METODO: <p:outputText value="#{controller.error.metodo}" />
 			CLASE: <p:outputText value="#{controller.error.clase}" />
 			EXCEPCION: <p:outputText value="#{controller.error.ex}" />
-	</p:panelGrid>
+		</p:panelGrid>
 
-</h:body>
+	</h:body>
+</f:view>
 </html>
