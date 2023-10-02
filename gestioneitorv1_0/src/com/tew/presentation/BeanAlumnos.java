@@ -3,6 +3,9 @@ package com.tew.presentation;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import com.tew.business.AlumnosService;
@@ -16,7 +19,8 @@ public class BeanAlumnos implements Serializable{
 	// de la tabla o de un formulario.
 	// Es necesario inicializarlo para que al entrar desde el formulario de
 	// AltaForm.xhtml se puedan dejar los valores en un objeto existente.
-	private Alumno alumno = new Alumno();
+	@ManagedProperty(value="#{alumno}")
+	private BeanAlumno alumno;
 	private ErrorDTO error = new ErrorDTO();
 
 	public ErrorDTO getError() {
@@ -29,11 +33,11 @@ public class BeanAlumnos implements Serializable{
 
 	private Alumno[] alumnos = null;
 
-	public Alumno getAlumno() {
+	public BeanAlumno getAlumno() {
 		return alumno;
 	}
 
-	public void setAlumno(Alumno alumno) {
+	public void setAlumno(BeanAlumno alumno) {
 		this.alumno = alumno;
 	}
 
@@ -42,11 +46,7 @@ public class BeanAlumnos implements Serializable{
 	}
 
 	public void setAlumnos(Alumno[] alumnos) {
-		this.alumnos = alumnos;
-	}
-
-	public BeanAlumnos(){
-		iniciaAlumno(null);
+		this.alumnos =  alumnos;
 	}
 
 	public void iniciaAlumno(ActionEvent event) {
@@ -86,7 +86,7 @@ public class BeanAlumnos implements Serializable{
 			// a través de la factoría
 			service = Factories.services.createAlumnosService();
 			//Recargamos el alumno en la tabla de la base de datos por si hubiera cambios.
-			alumno = service.findById(alumno.getId());
+			alumno = (BeanAlumno) service.findById(alumno.getId());
 			return "exito";
 		} catch (Exception e) {
 			error.setVista("editForm");
@@ -121,7 +121,7 @@ public class BeanAlumnos implements Serializable{
 			return "error";
 		}
 	}
-	
+
 	public String baja() {
 		AlumnosService service;
 		try {
@@ -140,5 +140,25 @@ public class BeanAlumnos implements Serializable{
 			error.setEx(e);
 			return "error";
 		}
+	}
+
+	@PostConstruct
+	public void init() {
+		System.out.println("BeanAlumnos - PostConstruct");
+		//Buscamos el alumno en la sesión. Esto es un patrón factoría claramente.
+		alumno = (BeanAlumno)
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(new
+						String("alumno"));
+		//si no existe lo creamos e inicializamos
+		if (alumno == null) {
+			System.out.println("BeanAlumnos - No existia");
+			alumno = new BeanAlumno();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( "alumno",
+					alumno);
+		}
+	}
+	@PreDestroy
+	public void end() {
+		System.out.println("BeanAlumnos - PreDestroy");
 	}
 }
