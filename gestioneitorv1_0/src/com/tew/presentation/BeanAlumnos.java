@@ -122,7 +122,7 @@ public class BeanAlumnos implements Serializable{
 		}
 	}
 
-	public String baja() {
+	public String baja(Alumno alumno) {
 		AlumnosService service;
 		try {
 			// Acceso a la implementacion de la capa de negocio
