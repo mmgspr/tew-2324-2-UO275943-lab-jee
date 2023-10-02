@@ -1,7 +1,6 @@
 package com.tew.presentation;
 
 import java.io.Serializable;
-import javax.faces.bean.*;
 import javax.faces.event.ActionEvent;
 import com.tew.business.AlumnosService;
 import com.tew.infrastructure.Factories;

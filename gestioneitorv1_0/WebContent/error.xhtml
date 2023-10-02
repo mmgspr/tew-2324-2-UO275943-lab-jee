@@ -2,19 +2,20 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Error</title>
 </h:head>
 <h:body>
 
 Se ha producido un error:<br/>
-	<h:panelGrid columns="2">
-			VISTA: <h:outputText value="#{controller.error.vista}" />
-			METODO: <h:outputText value="#{controller.error.metodo}" />
-			CLASE: <h:outputText value="#{controller.error.clase}" />
-			EXCEPCION: <h:outputText value="#{controller.error.ex}" />
-	</h:panelGrid>
+	<p:panelGrid columns="2">
+			VISTA: <p:outputText value="#{controller.error.vista}" />
+			METODO: <p:outputText value="#{controller.error.metodo}" />
+			CLASE: <p:outputText value="#{controller.error.clase}" />
+			EXCEPCION: <p:outputText value="#{controller.error.ex}" />
+	</p:panelGrid>
 
 </h:body>
 </html>
