@@ -6,29 +6,29 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view locale="#{settings.locale}">
 	<h:head>
-		<title>Listado Alumnos</title>
+		<title>#{msg.tituloOperacionListado}</title>
 	</h:head>
 	<h:body>
 
 		<h:form>
 			<p:dataTable var="valumno" value="#{controller.alumnos}" border="1">
 				<p:column>
-					<f:facet name="header">#{msgs.nombre}</f:facet>#{valumno.nombre}</p:column>
+					<f:facet name="header">#{msgs.tablaNombre}</f:facet>#{valumno.nombre}</p:column>
 				<p:column>
-					<f:facet name="header">#{msgs.apellidos}</f:facet>#{valumno.apellidos}</p:column>
+					<f:facet name="header">#{msgs.tablaApellidos}</f:facet>#{valumno.apellidos}</p:column>
 				<p:column>
-					<f:facet name="header">#{msgs.userid}</f:facet>#{valumno.iduser}</p:column>
+					<f:facet name="header">#{msgs.tablaIdUser}</f:facet>#{valumno.iduser}</p:column>
 				<p:column>
-					<f:facet name="header">#{msgs.correo}</f:facet>#{valumno.email}</p:column>
+					<f:facet name="header">#{msgs.tablaCorreo}</f:facet>#{valumno.email}</p:column>
 				<p:column>
-					<f:facet name="header">Baja</f:facet>
+					<f:facet name="header">#{msgs.tablaBaja}</f:facet>
 					<h:commandLink action="#{controller.baja(valumno)}" type="submit"
-						value="BAJA" immediate="true" >
+						value="#{msgs.enlaceBaja}" immediate="true" >
 					</h:commandLink>
 				</p:column>
 				<p:column>
-					<f:facet name="header">Edición</f:facet>
-					<h:commandLink action="editar" type="submit" value="EDITAR"
+					<f:facet name="header">#{msgs.tablaEditar}</f:facet>
+					<h:commandLink action="editar" type="submit" value="#{msgs.enlaceEditar}"
 						immediate="true" actionListener="#{alumno.setAlumno(valumno)}">
 					</h:commandLink>
 				</p:column>

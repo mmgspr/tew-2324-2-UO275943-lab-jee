@@ -21,15 +21,26 @@ public class BeanAlumnos implements Serializable{
 	// AltaForm.xhtml se puedan dejar los valores en un objeto existente.
 	@ManagedProperty(value="#{alumno}")
 	private BeanAlumno alumno;
-	private ErrorDTO error = new ErrorDTO();
+//	private ErrorDTO error = new ErrorDTO();
+	
+	@ManagedProperty(value="#{error}")
+	private BGerror error;
 
-	public ErrorDTO getError() {
+	public BGerror getError() {
 		return error;
 	}
 
-	public void setError(ErrorDTO error) {
+	public void setErr(BGerror error) {
 		this.error = error;
 	}
+
+//	public ErrorDTO getError() {
+//		return error;
+//	}
+//
+//	public void setError(ErrorDTO error) {
+//		this.error = error;
+//	}
 
 	private Alumno[] alumnos = null;
 
@@ -71,31 +82,12 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			error.setVista("Listado");
-			error.setClase(e.getStackTrace()[0].getClassName());
-			error.setMetodo(e.getStackTrace()[0].getMethodName());
-			error.setEx(e);
+			error.initError("Listado", e);
 			return "error";
 		}
 	}
 
-	public String edit() {
-		AlumnosService service;
-		try {
-			// Acceso a la implementacion de la capa de negocio
-			// a través de la factoría
-			service = Factories.services.createAlumnosService();
-			//Recargamos el alumno en la tabla de la base de datos por si hubiera cambios.
-			alumno = (BeanAlumno) service.findById(alumno.getId());
-			return "exito";
-		} catch (Exception e) {
-			error.setVista("editForm");
-			error.setClase(e.getStackTrace()[0].getClassName());
-			error.setMetodo(e.getStackTrace()[0].getMethodName());
-			error.setEx(e);
-			return "error";
-		}
-	}
+
 
 	public String salva() {
 		AlumnosService service;
@@ -114,10 +106,7 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			error.setVista("altaForm");
-			error.setClase(e.getStackTrace()[0].getClassName());
-			error.setMetodo(e.getStackTrace()[0].getMethodName());
-			error.setEx(e);
+			error.initError("altaForm", e);
 			return "error";
 		}
 	}
@@ -134,10 +123,7 @@ public class BeanAlumnos implements Serializable{
 			alumnos = (Alumno [])service.getAlumnos().toArray(new Alumno[0]);
 			return "exito";
 		} catch (Exception e) {
-			error.setVista("Listado");
-			error.setClase(e.getStackTrace()[0].getClassName());
-			error.setMetodo(e.getStackTrace()[0].getMethodName());
-			error.setEx(e);
+			error.initError("Listado", e);
 			return "error";
 		}
 	}
@@ -155,6 +141,17 @@ public class BeanAlumnos implements Serializable{
 			alumno = new BeanAlumno();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( "alumno",
 					alumno);
+		}
+		
+		error = (BGerror)
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(new
+						String("error"));
+		//si no existe lo creamos e inicializamos
+		if (error == null) {
+			System.out.println("BGError - No existia");
+			error = new BGerror();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put( "error",
+					error);
 		}
 	}
 	@PreDestroy

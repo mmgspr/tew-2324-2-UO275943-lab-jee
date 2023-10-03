@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view locale="#{settings.locale}">
 	<h:head>
-		<title>Formulario Alta</title>
+		<title>#{msgs.tituloOperacionEdicion}</title>
 	</h:head>
 	<h:body>
 
@@ -17,7 +17,7 @@
 			#{msgs.userid}: <p:inputText value="#{controller.alumno.iduser}" />
 			#{msgs.correo}: <p:inputText value="#{controller.alumno.email}" />
 			</p:panelGrid>
-			<h:commandButton value="Editar" action="#{controller.edit}" />
+			<p:commandButton value="Editar" action="#{controller.salva}" />
 		</h:form>
 
 	</h:body>

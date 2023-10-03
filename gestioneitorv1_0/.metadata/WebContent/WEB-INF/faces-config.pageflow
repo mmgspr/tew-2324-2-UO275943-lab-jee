@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16953169895160" configfile="/gestioneitorv1_0/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf16955738942830" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16955738942831 pf169557444652012" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" id="pf16955738942833" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf169557594284627 pf169557594284628" inlinks="pf16955738942831 pf169557582114520 pf169557582114521 pf169557594284627" path="/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" id="pf16955738942833" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf169557594284627 pf169557594284628" inlinks="pf16955738942831 pf169557582114520 pf169557582114521 pf169557594284627 pf16963522097960" path="/listado.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="altaForm.xhtml" id="pf169557444652013" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf169557582114520" inlinks="pf169557444652012" path="/altaForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="editForm.xhtml" id="pf169557582114522" referenceLink="//@navigationRule.4/@navigationCase.1/@toViewId|" outlinks="pf169557582114521" inlinks="pf169557594284628" path="/editForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editForm.xhtml" id="pf169557582114522" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf169557582114521 pf16963522097960" inlinks="pf169557594284628" path="/editForm.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="*" id="pf169557582114523" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf169557582114524" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf169557582114525" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf169557582114524" path="/error.xhtml"/>
   <links id="pf16955738942831" target="pf16955738942833" source="pf16955738942830" outcome="exito" fromaction="#{controller.listado}"/>
@@ -13,4 +13,5 @@
   <links id="pf169557582114524" target="pf169557582114525" source="pf169557582114523" outcome="error"/>
   <links id="pf169557594284627" target="pf16955738942833" source="pf16955738942833" outcome="exito" fromaction="#{controller.baja(valumno)}"/>
   <links id="pf169557594284628" target="pf169557582114522" source="pf16955738942833" outcome="editar"/>
+  <links id="pf16963522097960" target="pf16955738942833" source="pf169557582114522" outcome="exito" fromaction="#{controller.salva}"/>
 </pageflow:Pageflow>

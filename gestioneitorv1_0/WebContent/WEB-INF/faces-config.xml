@@ -19,6 +19,11 @@
 		<managed-bean-class>com.tew.presentation.BeanSettings</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>error</managed-bean-name>
+		<managed-bean-class>com.tew.presentation.BGerror</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<from-view-id>/index.xhtml</from-view-id>
 		<navigation-case>
@@ -43,6 +48,14 @@
 		<from-view-id>/editForm.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{controller.edit}</from-action>
+			<from-outcome>exito</from-outcome>
+			<to-view-id>/listado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{controller.salva}</from-action>
 			<from-outcome>exito</from-outcome>
 			<to-view-id>/listado.xhtml</to-view-id>
 		</navigation-case>

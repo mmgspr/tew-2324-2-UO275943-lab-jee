@@ -6,15 +6,15 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view locale="#{settings.locale}">
 	<h:head>
-		<title>Error</title>
+		<title>#{msgs.tituloOperacionError}</title>
 	</h:head>
 	<h:body>
-Se ha producido un error:<br />
+#{msgs.mensajeError1}:<br />
 		<p:panelGrid columns="2">
-			VISTA: <h:outputText value="#{controller.error.vista}" />
-			METODO: <h:outputText value="#{controller.error.metodo}" />
-			CLASE: <h:outputText value="#{controller.error.clase}" />
-			EXCEPCION: <h:outputText value="#{controller.error.ex}" />
+			#{msgs.vista}: <h:outputText value="#{error.vista}" />
+			#{msgs.metodo}: <h:outputText value="#{error.metodo}" />
+			#{msgs.clase}: <h:outputText value="#{error.clase}" />
+			#{msgs.excepcion}: <h:outputText value="#{error.ex}" />
 		</p:panelGrid>
 
 	</h:body>
