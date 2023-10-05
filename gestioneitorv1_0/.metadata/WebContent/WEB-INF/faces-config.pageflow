@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16953169895160" configfile="/gestioneitorv1_0/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" id="pf16955738942833" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf169652150897511" inlinks="pf16965206882814" path="/listado.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listado.xhtml" id="pf16955738942833" referenceLink="//@navigationRule.1/@navigationCase.3/@toViewId|" outlinks="pf169652150897511" inlinks="pf16965206882814" path="/listado.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="altaForm.xhtml" id="pf169557444652013" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16965206882815" path="/altaForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf169557582114523" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf169557582114524 pf16965206882815 pf16965206882814" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf169557582114523" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf169557582114524 pf16965206882815 pf16965206882814 pf169652248034516" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf169557582114525" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf169557582114524" path="/error.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="editForm.xhtml" id="pf169652150897612" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf169652150897511" path="/editForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf169652248034617" referenceLink="//@navigationRule.1/@navigationCase.3/@toViewId|" inlinks="pf169652248034516" path="/index.xhtml"/>
   <links id="pf169557582114524" target="pf169557582114525" source="pf169557582114523" outcome="error"/>
   <links id="pf16965206882815" target="pf169557444652013" source="pf169557582114523" outcome="alta"/>
   <links id="pf16965206882814" target="pf16955738942833" source="pf169557582114523" outcome="exito"/>
   <links id="pf169652150897511" target="pf169652150897612" source="pf16955738942833" outcome="editar"/>
+  <links id="pf169652248034516" target="pf169652248034617" source="pf169557582114523" outcome="/index.xhtml"/>
 </pageflow:Pageflow>
