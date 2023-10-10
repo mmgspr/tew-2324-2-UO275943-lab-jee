@@ -11,7 +11,6 @@ import javax.faces.event.ActionEvent;
 import com.tew.business.AlumnosService;
 import com.tew.infrastructure.Factories;
 import com.tew.model.Alumno;
-import com.tew.model.ErrorDTO;
 
 public class BeanAlumnos implements Serializable{
 	private static final long serialVersionUID = 55555L;
