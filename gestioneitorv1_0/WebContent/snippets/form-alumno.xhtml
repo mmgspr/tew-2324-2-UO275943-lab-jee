@@ -42,13 +42,13 @@
 			<p:inputText value="#{alumno.email}" required="true"
 				requiredMessage="#{msgs.formAlta_correo_requiredMessage}"
 				validatorMessage="#{msgs.formAlta_correo_validatorMessage}"
-				id="correo">
+				id="email">
 				<f:validateRegex pattern=".+@.+\.[a-z]+" />
 			</p:inputText>
-			<p:message for="correo" />
+			<p:message for="email" />
 		</h:panelGroup>
-		<h:commandButton value="#{msgs.botonSalvar}"
-			action="#{controller.salva}" update="Grid">
-		</h:commandButton>
+		<p:commandButton value="#{msgs.botonSalvar}"
+			action="#{controllerUsuario.salva}" update="Grid" process="@form">
+		</p:commandButton>
 	</p:panelGrid>
 </ui:composition>
