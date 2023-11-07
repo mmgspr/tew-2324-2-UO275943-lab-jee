@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="/gestioneitorv4_0/rest-jsapi">
+
+</script>
+<script type="text/javascript">
+function saveAlumno() {
+var nombre = document.getElementById("nombre");
+var apellidos = document.getElementById("apellidos");
+var idusuario = document.getElementById("idusuario");
+var email = document.getElementById("email");
+var alumno = {'id':0,'nombre':nombre, 'apellidos':apellidos, 'iduser':idusuario, 'email':email};
+AlumnosServicesRs.saveAlumno({$entity: alumno, $contentType: "application/json"});
+};
+</script>
+</head>
+<body>
+<form>
+nombre: <input type="text" id="nombre" size=15/> <br/>
+Apellidos: <input type="text" id="apellidos" size=30/> <br/>
+IdUsuario: <input type="text" id="idusuario" size=10/> <br/>
+Email: <input type="text" id="email" size=10/> <br/>
+Botón submit: <input type="submit" id="boton" onclick="saveAlumno()">
+</form>
+<p id="demo"></p>
+</body>
+</html>	

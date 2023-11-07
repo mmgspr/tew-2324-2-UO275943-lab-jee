@@ -24,11 +24,11 @@ public interface AlumnosServicesRs extends AlumnosService{
 	@Path("{id}")
 	void deleteAlumno(@PathParam("id") Long id) throws EntityNotFoundException;
 	
-	@PUT
+	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	void saveAlumno(Alumno alumno) throws EntityAlreadyExistsException;
 	
-	@POST
+	@PUT
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	void updateAlumno(Alumno alumno) throws EntityNotFoundException;
 }
