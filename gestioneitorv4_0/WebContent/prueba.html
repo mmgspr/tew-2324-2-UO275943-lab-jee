@@ -6,10 +6,11 @@
 </script>
 <script type="text/javascript">
 function saveAlumno() {
-var nombre = document.getElementById("nombre");
-var apellidos = document.getElementById("apellidos");
-var idusuario = document.getElementById("idusuario");
-var email = document.getElementById("email");
+var nombre = document.getElementById("nombre").value;
+alert(nombre);
+var apellidos = document.getElementById("apellidos").value;
+var idusuario = document.getElementById("idusuario").value;
+var email = document.getElementById("email").value;
 var alumno = {'id':0,'nombre':nombre, 'apellidos':apellidos, 'iduser':idusuario, 'email':email};
 AlumnosServicesRs.saveAlumno({$entity: alumno, $contentType: "application/json"});
 };
