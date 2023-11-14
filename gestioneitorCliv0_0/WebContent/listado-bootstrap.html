@@ -2,21 +2,31 @@
 <html>
 <head>
 <title>Ejemplo sencillo de web service con RESTEasy</title>
-<script type="text/javascript" src="http://localhost:8080/gestioneitorv4_0/rest-jsapi">
+<script type="text/javascript"
+	src="http://localhost:8080/gestioneitorv4_0/rest-jsapi">
 	
 </script>
 <script type="text/javascript">
 	function solicitarDatosAlumnos() {
-		var alumnos = AlumnosServicesRs.getAlumnos();
-		// Obtener el elemento HTML donde ir dejando el resultado
-		// del servicio
-		div = document.getElementById("contenido")
-		div.innerHTML = "";
-		for (i in alumnos) {
-			div.innerHTML += alumnos[i]["nombre"] + alumnos[i]["apellidos"]
-					+ alumnos[i]["email"] + alumnos[i]["iduser"] + "</br>";
-		}
-	}
+	    var alumnos = AlumnosServicesRs.getAlumnos();
+	    // Obtener el elemento HTML donde ir dejando el resultado
+	    // del servicio
+	    div = document.getElementById("listadoAlumnos");
+	    var contenido = "";
+	    for (i in alumnos) {
+	    	nombre = alumnos[i]["nombre"];
+	    	apellidos = alumnos[i]["apellidos"];
+	    	email = alumnos[i]["email"];
+	    	iduser = alumnos[i]["iduser"];
+	    	contenido += "<tr>";
+			contenido += "<td>" + nombre + "</td>"
+			contenido += "<td>" + apellidos + "</td>"
+			contenido += "<td>" + email + "</td>"
+			contenido += "<td>" + iduser + "</td>"
+	    	contenido += "</tr>";
+	    }
+	    div.innerHTML = contenido;
+    }
 </script>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script
@@ -24,10 +34,25 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body onload="solicitarDatosAlumnos()"style="background-color:LightGrey">
+<body onload="solicitarDatosAlumnos()"
+	style="background-color: LightGrey">
 	<h1>Listado de alumnos</h1>
 	<br />
-	<div class="form-group" id="contenido" style="height: 90%; top: 30px">
+	<div id="tabla" style="height: 90%; top: 30px">
+		<table class='table'>
+			<caption>Listado de Alumnos</caption>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellidos</th>
+					<th>Email</th>
+					<th>IdUser</th>
+				</tr>
+			</thead>
+			<tbody id="listadoAlumnos">
+			
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>
