@@ -45,3 +45,8 @@ function Model() {
 		return alumno;
 	}
 };
+$(function() {
+	// Creamos el modelo con los datos y la conexión al servicio web.
+	var model = new Model();
+	model.load();
+});
