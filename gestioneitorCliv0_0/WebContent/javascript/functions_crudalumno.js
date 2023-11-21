@@ -50,3 +50,33 @@ $(function() {
 	var model = new Model();
 	model.load();
 });
+function View() {
+	this.list = function(lista) {
+		$("#tblList").html("");
+		$("#tblList").html(
+		        "<thead>" + "<tr>" + "<th></th>" + "<th>ID</th>"
+		                + "<th>IDUser</th>" + "<th>Nombre</th>"
+		                + "<th>Apellidos</th>" + "<th>Email</th>" + "</tr>"
+		                + "</thead>" + "<tbody>" + "</tbody>");
+		for ( var i in lista) {
+			var alumno = lista[i];
+			$("#tblList tbody")
+			        .append(
+			                "<tr> <td>"
+			                        + "<img src='icons/edit.png' class='btnEdit'/>"
+			                        + "<img src='icons/delete.png' class='btnDelete'/> </td>"
+			                        + "<td>" + alumno.id + "</td>" + "<td>"
+			                        + alumno.iduser + "</td>" + "<td>"
+			                        + alumno.nombre + "</td>" + "<td>"
+			                        + alumno.apellidos + "</td>" + "<td>"
+			                        + alumno.email + "</td></tr>");
+		}
+	}
+	this.loadAlumnoFromForm = function() {
+	} // PENDIENTE DE IMPLEMENTAR
+	this.loadAlumnoInForm = function(alumno) {
+	} // PENDIENTE DE IMPLEMENTAR
+	this.getIdAlumno = function(celda) {
+	} // PENDIENTE DE IMPLEMENTAR
+};
+
