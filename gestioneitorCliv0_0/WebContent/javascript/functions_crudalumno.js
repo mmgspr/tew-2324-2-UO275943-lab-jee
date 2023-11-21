@@ -149,11 +149,29 @@ function Controller(varmodel, varview) {
 			// editar
 			that.view.loadAlumnoInForm(alumno);
 		});
+
+		// Manejador del enlace de borrado de un alumno en la tabla
+		$("#tblList").on("click", ".btnDelete",
+		// Método que gestiona el evento de clickar en el evento
+		function(event) {
+			// Obtenemos el id del alumno seleccionado mediante el icono de
+			// edición
+			var id_alumno = that.view.getIdAlumno($(this));
+			// Eliminamos el alumno
+			that.model.remove(id_alumno);
+			// Actualizamos lista
+			that.view.list(that.model.tbAlumnos);
+		});
 	}
 };
 
 $(function() {
 	// Creamos el modelo con los datos y la conexión al servicio web.
 	var model = new Model();
-	model.load();
+	// Creamos la vista que incluye acceso al modelo.
+	var view = new View();
+	// Creamos el controlador
+	var control = new Controller(model, view);
+	// Iniciamos la aplicación
+	control.init();
 });
