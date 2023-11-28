@@ -2,10 +2,14 @@ package impl.tew.business.resteasy;
 
 import java.util.List;
 
+import javax.ws.rs.NotAuthorizedException;
+
 import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.business.resteasy.AlumnosServicesRs;
+import com.tew.infrastructure.GestorSesion;
 import com.tew.model.Alumno;
+import com.tew.model.AlumnoRequestData;
 
 import impl.tew.business.classes.AlumnosAlta;
 import impl.tew.business.classes.AlumnosBaja;
@@ -17,7 +21,7 @@ public class AlumnosServicesRsImpl implements AlumnosServicesRs{
 
 	@Override
 	public List<Alumno> getAlumnos() throws Exception{
-			return new AlumnosListado().getAlumnos();
+		return new AlumnosListado().getAlumnos();
 	}
 	@Override
 	public void saveAlumno(Alumno alumno) throws EntityAlreadyExistsException {
@@ -28,11 +32,22 @@ public class AlumnosServicesRsImpl implements AlumnosServicesRs{
 		new AlumnosUpdate().update(alumno);
 	}
 	@Override
-	public void deleteAlumno(Long id) throws EntityNotFoundException {
-		new AlumnosBaja().delete(id);
+	public void deleteAlumno(Long id, String token) throws EntityNotFoundException, NotAuthorizedException {
+		if (GestorSesion.getInstance().comprobarToken(token) != null)
+			this.deleteAlumno(id);
 	}
 	@Override
 	public Alumno findById(Long id) throws EntityNotFoundException {
 		return new AlumnosBuscar().find(id);
+	}
+	@Override
+	public void deleteAlumno(Long id) throws EntityNotFoundException {
+		new AlumnosBaja().delete(id);
+	}
+	@Override
+	public void saveAlumno(AlumnoRequestData alumno) throws EntityAlreadyExistsException {
+		if (GestorSesion.getInstance().comprobarToken(alumno.getToken()) != null)
+			this.saveAlumno(alumno);
+		
 	}
 }

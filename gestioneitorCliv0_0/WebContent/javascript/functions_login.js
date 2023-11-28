@@ -35,6 +35,7 @@ function Controller(varmodel, varview) {
 			console.log(token);
 			if (token == "") {
 				// TODO: Mostrar mensaje de login incorrecto
+				alert("login incorrecto");
 			} else {
 				that.model.setToken(token);
 				$("#formulario").attr("data", "crudAlumno.html")

@@ -30,7 +30,8 @@ function Model() {
 	this.remove = function(id_alumno) {
 		// Llamamos al servicio de borrado de alumno
 		AlumnosServicesRs.deleteAlumno({
-			id : id_alumno
+		    id : id_alumno,
+		    $entity : sessionStorage.getItem("token")
 		});
 		// Recargamos la lista de alumnos.
 		this.load();
@@ -74,7 +75,8 @@ function View() {
 		    iduser : $("#iduser").val(),
 		    nombre : $("#nombre").val(),
 		    apellidos : $("#apellidos").val(),
-		    email : $("#email").val()
+		    email : $("#email").val(),
+		    token : sessionStorage.getItem("token")
 		};
 		return alumno;
 	}

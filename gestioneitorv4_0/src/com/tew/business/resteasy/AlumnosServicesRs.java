@@ -7,28 +7,33 @@ import com.tew.business.AlumnosService;
 import com.tew.business.exception.EntityAlreadyExistsException;
 import com.tew.business.exception.EntityNotFoundException;
 import com.tew.model.Alumno;
+import com.tew.model.AlumnoRequestData;
 
 @Path("/AlumnosServicesRs")
-public interface AlumnosServicesRs extends AlumnosService{
-	
+public interface AlumnosServicesRs extends AlumnosService {
+
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public List<Alumno> getAlumnos() throws Exception;
-	
+
 	@GET
 	@Path("{id}")
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	Alumno findById(@PathParam("id") Long id) throws EntityNotFoundException;
-	
+
 	@DELETE
 	@Path("{id}")
 	void deleteAlumno(@PathParam("id") Long id) throws EntityNotFoundException;
-	
-	@POST
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	void saveAlumno(Alumno alumno) throws EntityAlreadyExistsException;
-	
+
+	@DELETE
+	@Path("{id}")
+	void deleteAlumno(@PathParam("id") Long id, String token) throws EntityNotFoundException, NotAuthorizedException;
+
 	@PUT
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	void saveAlumno(AlumnoRequestData alumno) throws EntityAlreadyExistsException;
+
+	@PUT
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	void updateAlumno(Alumno alumno) throws EntityNotFoundException;
 }
