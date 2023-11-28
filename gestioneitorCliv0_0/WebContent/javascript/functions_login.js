@@ -1,6 +1,6 @@
 function Model() {
 	this.setToken = function(token) {
-		// TODO: Almacenar el token
+		sessionStorage.setItem("token", token);
 	}
 	this.login = function(user) {
 		return LoginServiceRs.login({
