@@ -11,6 +11,9 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String login;
 	private String name;
+	private String password;
+	
+	public User() {}
 	
 	public User(String login, String name) {
 		super();
@@ -28,6 +31,12 @@ public class User implements Serializable {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 
